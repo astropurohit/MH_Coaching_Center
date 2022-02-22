@@ -1,0 +1,851 @@
+ScreenManager:
+    Main1Page:
+    FrontPage:
+    AdmitPage:
+    RemovePage:
+    UpdatePage:
+    EnrollmentPage:
+    SLoginPage:
+    StudentFront:
+    StudentProfilePage:
+    Databasepage:
+    TeacherLoginPage:
+
+<FrontPage>:
+    name: "frontpage"
+    MDLabel:
+        text: "MH Coaching Center"
+        font_size: 27
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.80}
+        color: 0,0,1,1
+    MDLabel:
+        text: "Student Section"
+        font_size: 22
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.73}
+        color: 0,0,1,1
+    MDRaisedButton:
+        text: "Admission Form"
+        size_hint: (0.55, 0.07)
+        font_size: 16
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.64, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'admitpage'
+            root.manager.transition.direction = 'up'
+
+    MDRaisedButton:
+        text: "Remove Admission"
+        size_hint: (0.55, 0.07)
+        font_size: 16
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.54, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'removepage'
+            root.manager.transition.direction = 'up'
+
+    MDRaisedButton:
+        text: "Update Admission"
+        size_hint: (0.55, 0.07)
+        font_size: 16
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.44, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'updatepage'
+            root.manager.transition.direction = 'up'
+    MDRaisedButton:
+        text: "Enrollment Number"
+        size_hint: (0.55, 0.07)
+        font_size: 16
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.34, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'enrollmentpage'
+            root.manager.transition.direction = 'up'
+    MDRaisedButton:
+        text: "Login"
+        size_hint: (0.55, 0.07)
+        font_size: 16
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.24, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'sloginpage'
+            root.manager.transition.direction = 'up'
+
+<AdmitPage>:
+    name: "admitpage"
+    MDLabel:
+        text: "Admission Form"
+        color: 0,0,1,1
+        font_size: 30
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.85}
+
+    MDTextField:
+        id: student_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.7}
+        hint_text: "Student Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: father_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.6}
+        hint_text: "Fathers Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: date_label
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        hint_text: "DOB"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+        size_hint: (0.7, 0.05)
+        pos_hint: {'center_x': .5, 'center_y':0.42}
+		Spinner:
+			id: student_sub
+			text: "Subject"
+			background_normal: ""
+			background_color: 0,0,1,1
+			# background_down: 0,0,1, 1
+			size_hint: (0.99, 0.001)
+			pos_hint: {'center_x': .5, 'center_y':0.3}
+			values: ["Web Development", "App Development", "Python"]
+			on_text: student_sub.text
+
+    MDRaisedButton:
+        text: "Submit"
+        size_hint: (0.33, 0.07)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.34, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.admit()
+            root.manager.transition.direction = 'left'
+
+    MDTextButton:
+        text: "Back Home"
+        size_hint: (0.28, 0.07)
+        font_size: 15
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.28, 'center_x': 0.5}
+        color: 0,0,1,1
+        on_press:
+            root.manager.current = 'frontpage'
+            root.manager.transition.direction = 'down'
+
+    Label:
+        id: note_a
+        text: ""
+        color: 0,0,1,1
+        font_size: 15
+        bold: True
+        pos_hint: {'center_y':0.21}
+
+<RemovePage>:
+    name: "removepage"
+    MDLabel:
+        text: "Remove Your Admission"
+        color: 0,0,1,1
+        font_size: 30
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.85}
+
+    MDTextField:
+        id: student_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.7}
+        hint_text: "Student Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: father_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.6}
+        hint_text: "Fathers Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+        size_hint: (0.7, 0.05)
+        pos_hint: {'center_x': .5, 'center_y':0.5}
+		Spinner:
+			id: student_sub
+			text: "Subject"
+			background_normal: ""
+			background_color: 0,0,1,1
+			# background_down: 0,0,1, 1
+			size_hint: (0.99, 0.01)
+			pos_hint: {'center_x': .5, 'center_y':0.1}
+			values: ["Web", "App", "Python"]
+			on_text: student_sub.text
+
+    MDRaisedButton:
+        text: "Submit"
+        size_hint: (0.28, 0.07)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.4, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.remove()
+            root.manager.current = 'removepage'
+            root.manager.transition.direction = 'down'
+
+    MDTextButton:
+        text: "Back Home"
+        size_hint: (0.28, 0.07)
+        font_size: 15
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.34, 'center_x': 0.5}
+        color: 0,0,1,1
+        on_press:
+            root.manager.current = 'frontpage'
+            root.manager.transition.direction = 'down'
+
+    Label:
+        id: note_r
+        text: ""
+        color: 0,0,1,1
+        font_size: 25
+        bold: True
+        pos_hint: {'center_y':0.27}
+
+<UpdatePage>:
+    name: "updatepage"
+    MDLabel:
+        text: "Update Admission Form"
+        color: 0,0,1,1
+        font_size: 30
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.85}
+
+    MDTextField:
+        id: student_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.7}
+        hint_text: "Student Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: father_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.6}
+        hint_text: "Fathers Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: date_label
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        hint_text: "DOB"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+        size_hint: (0.7, 0.05)
+        pos_hint: {'center_x': .5, 'center_y':0.42}
+		Spinner:
+			id: student_sub
+			text: "Subject"
+			background_normal: ""
+			background_color: 0,0,1,1
+			# background_down: 0,0,1, 1
+			size_hint: (0.99, 0.001)
+			pos_hint: {'center_x': .5, 'center_y':0.3}
+			values: ["Web Development", "App Development", "Python"]
+			on_text: student_sub.text
+
+    MDRaisedButton:
+        text: "Submit"
+        size_hint: (0.33, 0.07)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.34, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.update()
+            root.manager.current = 'updatepage'
+            root.manager.transition.direction = 'down'
+
+    MDTextButton:
+        text: "Back Home"
+        size_hint: (0.28, 0.07)
+        font_size: 15
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.28, 'center_x': 0.5}
+        color: 0,0,1,1
+        on_press:
+            root.manager.current = 'frontpage'
+            root.manager.transition.direction = 'down'
+
+    Label:
+        id: note_u
+        text: ""
+        color: 0,0,1,1
+        font_size: 15
+        bold: True
+        pos_hint: {'center_y':0.21}
+
+<SLoginPage>:
+    name: "sloginpage"
+    MDLabel:
+        text: "Student\nLogin Form"
+        color: 0,0,1,1
+        font_size: 30
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.85}
+
+    MDTextField:
+        id: student_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.7}
+        hint_text: "Student Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: roll_nu
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.6}
+        hint_text: "Roll Number"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+        size_hint: (0.7, 0.05)
+        pos_hint: {'center_x': .5, 'center_y':0.5}
+		Spinner:
+			id: student_sub
+			text: "Subject"
+			background_normal: ""
+			background_color: 0,0,1,1
+			# background_down: 0,0,1, 1
+			size_hint: (0.99, 0.01)
+			pos_hint: {'center_x': .5, 'center_y':0.1}
+			values: ["Web Development", "App Development", "Python"]
+			on_text: student_sub.text
+
+    MDRaisedButton:
+        text: "Submit"
+        size_hint: (0.28, 0.07)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.4, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.login()
+            root.manager.transition.direction = 'left'
+
+    MDTextButton:
+        text: "Back Home"
+        size_hint: (0.28, 0.07)
+        font_size: 15
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.34, 'center_x': 0.5}
+        color: 0,0,1,1
+        on_press:
+            root.manager.current = 'frontpage'
+            root.manager.transition.direction = 'down'
+
+    Label:
+        id: note_sl
+        text: ""
+        color: 0,0,1,1
+        font_size: 25
+        bold: True
+        pos_hint: {'center_y':0.27}
+
+<EnrollmentPage>:
+    name: "enrollmentpage"
+    MDLabel:
+        text: "Your\n Enrollment Number"
+        color: 0,0,1,1
+        font_size: 30
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.85}
+
+    MDTextField:
+        id: student_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.7}
+        hint_text: "Student Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: father_name
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.6}
+        hint_text: "Fathers Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    BoxLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+        size_hint: (0.7, 0.05)
+        pos_hint: {'center_x': .5, 'center_y':0.5}
+		Spinner:
+			id: student_sub
+			text: "Subject"
+			background_normal: ""
+			background_color: 0,0,1,1
+			# background_down: 0,0,1, 1
+			size_hint: (0.99, 0.01)
+			pos_hint: {'center_x': .5, 'center_y':0.1}
+			values: ["Web Development", "App Development", "Python"]
+			on_text: student_sub.text
+
+    MDRaisedButton:
+        text: "Submit"
+        size_hint: (0.28, 0.07)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.4, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.enroll()
+            root.manager.current = 'enrollmentpage'
+            root.manager.transition.direction = 'down'
+
+    MDTextButton:
+        text: "Back Home"
+        size_hint: (0.28, 0.07)
+        font_size: 15
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.34, 'center_x': 0.5}
+        color: 0,0,1,1
+        on_press:
+            root.manager.current = 'frontpage'
+            root.manager.transition.direction = 'down'
+
+    Label:
+        id: note_en
+        text: ""
+        color: 0,0,1,1
+        font_size: 25
+        bold: True
+        pos_hint: {'center_y':0.27}
+
+
+<StudentFront>
+    name: "studentfront"
+    MDLabel:
+        text: "MH Coaching Center"
+        font_size: 27
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.90}
+        color: 0,0,1,1
+    MDLabel:
+        text: "Student Information"
+        font_size: 22
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.84}
+        color: 0,0,1,1
+    Image:
+        source: "new logo.png"
+        pos_hint: {'center_y':.75, 'center_x': .5}
+        size_hint_y: None
+        size_hint_x: None
+        width: 90
+        height: 230
+    MDRaisedButton:
+        text: "View Profile"
+        size_hint: (0.4, 0.03)
+        font_size: 16
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.68, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'studentprofilepage'
+            root.manager.transition.direction = 'up'
+    MDLabel:
+        text: "Enrollment"
+        font_size: 20
+        bold: True
+        halign: 'left'
+        border_line: "True"
+        pos_hint: {'center_y':0.63, 'center_x':0.58}
+        color: 0,0,1,1
+    MDLabel:
+        id: enNumber
+        text: ""
+        font_size: 18
+        bold: True
+        halign: 'right'
+        border_line: "True"
+        pos_hint: {'center_y':0.63, 'center_x':0.4}
+        color: 0,0,1,1
+
+    MDLabel:
+        text: "Subject"
+        font_size: 20
+        bold: True
+        halign: 'left'
+        border_line: "True"
+        pos_hint: {'center_y':0.58, 'center_x':0.58}
+        color: 0,0,1,1
+    MDLabel:
+        id: subName
+        text: ""
+        font_size: 20
+        bold: True
+        halign: 'right'
+        border_line: "True"
+        pos_hint: {'center_y':0.58, 'center_x':0.4}
+        color: 0,0,1,1
+
+    TabbedPanel:
+        do_default_tab: False
+
+	    size_hint: .99, .5
+	    pos_hint: {'center_x': .5, 'center_y': .3}
+
+        # ft_top, left_mid, left_bottom, top_left,
+        # top_mid, top_right, right_top, right_mid,
+        # right_bottom, bottom_left, bottom_mid,
+        # bottom_right.
+
+	    tab_pos: 'top_right'
+
+	    TabbedPanelItem:
+            id: pannel1
+		    text: "HTML"
+		    Label:
+                id: lecture1
+			    text: "Html Lecture/nComming soon!"
+
+	    TabbedPanelItem:
+            id: pannel2
+		    text: "CSS"
+            BoxLayout:
+			    Label:
+                    id: lecture2
+				    text: "Comming soon!"
+
+	    TabbedPanelItem:
+            id: pannel3
+		    text: "JS"
+            BoxLayout:
+			    Label:
+                    id: lecture3
+				    text: "Comming soon!"
+
+    MDRaisedButton:
+        text: "Teacher's Profile"
+        size_hint: (0.7, 0.04)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.025, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.admit()
+            root.manager.current = 'studentfront'
+            root.manager.transition.direction = 'left'
+
+<StudentProfilePage>:
+    name: "studentprofilepage"
+    MDLabel:
+        text: "MH Coaching Center"
+        font_size: 27
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.90}
+        color: 0,0,1,1
+    MDLabel:
+        text: "Student Information"
+        font_size: 22
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.84}
+        color: 0,0,1,1
+    Image:
+        source: "new logo.png"
+        halign: "center"
+        pos_hint: {'center_y':.67, 'center_x': .5}
+        size_hint_y: None
+        size_hint_x: None
+        width: 150
+        height: 230
+    MDLabel:
+        text: "Name"
+        font_size: 18
+        bold: True
+        halign: 'left'
+        border_line: "True"
+        pos_hint: {'center_y':0.5, 'center_x':0.6}
+        color: 0,0,1,1
+    MDLabel:
+        id: SName
+        text: ""
+        font_size: 18
+        bold: True
+        halign: 'right'
+        border_line: "True"
+        pos_hint: {'center_y':0.5, 'center_x':0.4}
+        color: 0,0,1,1
+    MDLabel:
+        text: "Father"
+        font_size: 18
+        bold: True
+        halign: 'left'
+        border_line: "True"
+        pos_hint: {'center_y':0.45, 'center_x':0.6}
+        color: 0,0,1,1
+    MDLabel:
+        id: FaName
+        text: ""
+        font_size: 18
+        bold: True
+        halign: 'right'
+        border_line: "True"
+        pos_hint: {'center_y':0.45, 'center_x':0.4}
+        color: 0,0,1,1
+    MDLabel:
+        text: "DOB"
+        font_size: 18
+        bold: True
+        halign: 'left'
+        border_line: "True"
+        pos_hint: {'center_y':0.4, 'center_x':0.6}
+        color: 0,0,1,1
+    MDLabel:
+        id: Sdob
+        text: ""
+        font_size: 18
+        bold: True
+        halign: 'right'
+        border_line: "True"
+        pos_hint: {'center_y':0.4, 'center_x':0.4}
+        color: 0,0,1,1
+    MDLabel:
+        text: "Student ID"
+        font_size: 18
+        bold: True
+        halign: 'left'
+        border_line: "True"
+        pos_hint: {'center_y':0.35, 'center_x':0.6}
+        color: 0,0,1,1
+    MDLabel:
+        id: Sid
+        text: ""
+        font_size: 18
+        bold: True
+        halign: 'right'
+        border_line: "True"
+        pos_hint: {'center_y':0.35, 'center_x':0.4}
+        color: 0,0,1,1
+    MDRaisedButton:
+        text: "Back"
+        size_hint: (0.7, 0.04)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.27, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.admit()
+            root.manager.current = 'studentfront'
+            root.manager.transition.direction = 'down'
+    
+<Main1Page>:
+    name: "main1page"
+    MDLabel:
+        text: "MH Coaching Center"
+        font_size: 27
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.70}
+        color: 0,0,1,1
+    MDRaisedButton:
+        text: "Student Section"
+        size_hint: (0.7, 0.2)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.5, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'frontpage'
+            root.manager.transition.direction = 'up'
+
+    MDRaisedButton:
+        text: "Teachers Section"
+        size_hint: (0.7, 0.2)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.25, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            root.manager.current = 'teacherloginpage'
+            root.manager.transition.direction = 'up'
+
+<Databasepage>:
+    name: "databasepage"
+    MDLabel:
+        text: "MH Coaching Center"
+        font_size: 27
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.90}
+        color: 0,0,1,1
+    MDLabel:
+        text: "Database"
+        font_size: 22
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.84}
+        color: 0,0,1,1
+
+<TeacherLoginPage>:
+    name: "teacherloginpage"
+    MDLabel:
+        text: "Teachers\nLogin Form"
+        color: 0,0,1,1
+        font_size: 30
+        bold: True
+        halign: 'center'
+        pos_hint: {'center_y':0.75}
+
+    MDTextField:
+        id: username
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.6}
+        hint_text: "Student Name"
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDTextField:
+        id: password
+        size_hint: (0.7, 0.1)
+        font_size: 15
+        pos_hint: {'center_x': .5, 'center_y':0.5}
+        hint_text: "Roll Number"
+        password: True
+        helper_text: 'Required'
+        helper_text_mode: 'on_error'
+        required: True
+        line_color_focus: 0, 0, 1, 1
+
+    MDRaisedButton:
+        text: "Submit"
+        size_hint: (0.28, 0.07)
+        font_size: 20
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.4, 'center_x': 0.5}
+        md_bg_color: 0,0,1,1
+        on_press:
+            app.teacher_login()
+            root.manager.transition.direction = 'left'
+
+    MDTextButton:
+        text: "Back Home"
+        size_hint: (0.28, 0.07)
+        font_size: 15
+        italic: True
+        halign: 'center'
+        pos_hint: {'center_y':0.33, 'center_x': 0.5}
+        color: 0,0,1,1
+        on_press:
+            root.manager.current = 'main1page'
+            root.manager.transition.direction = 'down'
+
+    Label:
+        id: note_tl
+        text: ""
+        color: 0,0,1,1
+        font_size: 25
+        bold: True
+        pos_hint: {'center_y':0.25}
